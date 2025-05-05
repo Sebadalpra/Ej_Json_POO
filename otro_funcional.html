@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Productos</title>
+</head>
+<body>
+    <h3>Obtener producto de localStorage</h3>
+    <button onclick="obtenerDatos()">Obtener datos</button>
+
+    <h2>Cargar nuevo producto</h2>
+
+    <label>Nombre: </label>
+    <input type="text" id="nombre" placeholder="nombre"><br><br>
+
+    <label>Precio: </label>
+    <input type="text" id="precio" placeholder="precio"><br><br>
+
+    <label>Código de barras: </label>
+    <input type="text" id="codigo" placeholder="código de barras"><br><br>
+
+    <label>Fecha de vencimiento: </label>
+    <input type="date" id="fecha"><br><br>
+
+    <button onclick="cargarProducto()">Cargar producto</button>
+
+    <h3>Eliminar datos</h3>
+    <button onclick="eliminarDatos()">Eliminar datos</button><br><br>
+
+    <label>Id producto a eliminar: </label>
+    <input type="text" id="idEliminar" placeholder="id"><br><br>
+    <button onclick="eliminarProductoPorId()">Eliminar producto por id</button>
+
+    <script>
+        function cargarProducto() {
+            let nombre = document.getElementById('nombre').value;
+            let precio = document.getElementById('precio').value;
+            let codigo = document.getElementById('codigo').value;
+            let fecha = document.getElementById('fecha').value;
+
+            if (!nombre || !precio || !codigo || !fecha) {
+                alert("Por favor completa todos los campos");
+                return;
+            }
+
+            let productos = JSON.parse(localStorage.getItem('productos')) || [];
+
+            let nuevoProducto = {
+                id: Date.now(),
+                nombre: nombre,
+                precio: precio,
+                codigo: codigo,
+                fecha: fecha
+            };
+
+            productos.push(nuevoProducto);
+            localStorage.setItem('productos', JSON.stringify(productos));
+            alert("Producto cargado exitosamente");
+            limpiarCampos();
+        }
+
+        function obtenerDatos() {
+            let productos = JSON.parse(localStorage.getItem('productos')) || [];
+            console.log("Productos guardados:", productos);
+            alert(JSON.stringify(productos, null, 2));
+        }
+
+        function eliminarDatos() {
+            localStorage.removeItem('productos');
+            alert("Todos los productos fueron eliminados");
+        }
+
+        function eliminarProductoPorId() {
+            let idEliminar = document.getElementById('idEliminar').value;
+            if (!idEliminar) {
+                alert("Por favor ingresa un ID");
+                return;
+            }
+
+            let productos = JSON.parse(localStorage.getItem('productos')) || [];
+            productos = productos.filter(producto => producto.id != idEliminar);
+            localStorage.setItem('productos', JSON.stringify(productos));
+            alert("Producto eliminado si existía");
+        }
+
+        function limpiarCampos() {
+            document.getElementById('nombre').value = '';
+            document.getElementById('precio').value = '';
+            document.getElementById('codigo').value = '';
+            document.getElementById('fecha').value = '';
+            document.getElementById('idEliminar').value = '';
+        }
+    </script>
+</body>
+</html>

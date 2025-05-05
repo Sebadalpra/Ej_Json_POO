@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prod alterados</title>
+</head>
+<body>
+    
+    <script src="../D/productos.js"></script>
+    <script>
+        producto.forEach(p => {
+            if (p.precio % 2 == 1) {
+                p.moneda = "usd" // 2.a
+            }
+            else {
+                console.log("eliminar fecha venc")
+                delete p.fecha_vencimiento; // 2.c
+                console.log(p)
+            }
+        });
+        console.log(producto) // 2.b y 2.d
+    </script>
+</body>
+</html>
