@@ -6,8 +6,30 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>jotasones</h1>
+
+    <label for="">Codigo de barras</label>
+    <input type="number" id="id" placeholder="Codigo de barras" value=""><br><br>
+
+    <label for="">Nombre</label>
+    <input type="text" id="nombre" placeholder="Nombre" value=""><br><br>
+
+    <label for="">Precio</label>
+    <input type="number" id="precio" placeholder="Precio" value=""><br><br>
+
+    <label for="">Fecha</label>
+    <input type="date" id="fecha_vencimiento" placeholder="Fecha" value=""><br><br>
+
+    <button id="boton_guardar" onclick="guardarProducto()">Guardar datos</button>
+    <br><br>
+    <button id="boton_mostrar" onclick="mostrarProductos()">Mostrar datos</button>
+    <br><br>
+    <button id="boton_eliminar">Eliminar todos los datos</button>
+    <br><br>
+    <label for="">Id a eliminar</label>
+    <input type="number" id="id_eliminar" placeholder="Id a eliminar" value=""><br><br>
+    <button id="boton_eliminar_id" onclick="eliminarProductoPorId()">Eliminar por id</button>
+
     <script src="../D/jotasones.js"></script>
-    
 </body>
 </html>
