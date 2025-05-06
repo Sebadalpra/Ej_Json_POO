@@ -33,16 +33,19 @@
 
     <script>
         function cargarProducto() {
+            // Obtengo el valor de cada campo
             let nombre = document.getElementById('nombre').value;
             let precio = document.getElementById('precio').value;
             let codigo = document.getElementById('codigo').value;
             let fecha = document.getElementById('fecha').value;
 
+            // Validacion
             if (!nombre || !precio || !codigo || !fecha) {
                 alert("Por favor completa todos los campos");
                 return;
             }
 
+            // 
             let productos = JSON.parse(localStorage.getItem('productos')) || [];
 
             let nuevoProducto = {
